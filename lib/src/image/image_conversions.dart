@@ -60,4 +60,20 @@ class ImageConversion {
 
     buffer.loadList(rgbValues, shape: shape);
   }
+
+  static void convertImageToTensorBuffer2(Image image, TensorBuffer buffer) {
+    int w = image.width;
+    int h = image.height;
+    List<int> intValues = image.data;
+
+    List<int> shape = [1, h, w, 3];
+    List<int> rgbValues = List.filled(h * w * 3, 0);
+    for (int i = 0, j = 0; i < intValues.length; i++) {
+      rgbValues[j++] = ((intValues[i]) & 0xFF);
+      rgbValues[j++] = ((intValues[i] >> 8) & 0xFF);
+      rgbValues[j++] = ((intValues[i] >> 16) & 0xFF);
+    }
+
+    buffer.loadList(rgbValues, shape: shape);
+  }
 }

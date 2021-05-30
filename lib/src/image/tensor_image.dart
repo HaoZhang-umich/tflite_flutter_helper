@@ -284,4 +284,6 @@ class _ImageContainer {
     }
     return shape[dim];
   }
+
+  List<int> getBufferShape() => _bufferImage!.getShape();
 }

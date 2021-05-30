@@ -226,6 +226,7 @@ class _ImageContainer {
   }
 
   TensorBuffer get tensorBuffer {
+    print("WHO WANNA FUCK FLUTTER");
     if (_isBufferUpdated) {
       return _bufferImage!;
     }
@@ -242,6 +243,7 @@ class _ImageContainer {
     }
 
     ImageConversion.convertImageToTensorBuffer2(_image!, _bufferImage!);
+    print('FUCK FLUTTER');
     _isBufferUpdated = true;
     return _bufferImage!;
   }

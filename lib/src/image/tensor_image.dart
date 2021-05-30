@@ -241,7 +241,7 @@ class _ImageContainer {
       _bufferImage = TensorBuffer.createDynamic(tfLiteType!);
     }
 
-    ImageConversion.convertImageToTensorBuffer(_image!, _bufferImage!);
+    ImageConversion.convertImageToTensorBuffer2(_image!, _bufferImage!);
     _isBufferUpdated = true;
     return _bufferImage!;
   }

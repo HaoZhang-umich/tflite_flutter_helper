@@ -226,7 +226,6 @@ class _ImageContainer {
   }
 
   TensorBuffer get tensorBuffer {
-    print("WHO WANNA FUCK FLUTTER");
     if (_isBufferUpdated) {
       return _bufferImage!;
     }
@@ -242,8 +241,8 @@ class _ImageContainer {
       _bufferImage = TensorBuffer.createDynamic(tfLiteType!);
     }
 
-    ImageConversion.convertImageToTensorBuffer2(_image!, _bufferImage!);
-    print('FUCK FLUTTER');
+    ImageConversion.convertImageToTensorBuffer(_image!, _bufferImage!,
+        axis_num: 4);
     _isBufferUpdated = true;
     return _bufferImage!;
   }

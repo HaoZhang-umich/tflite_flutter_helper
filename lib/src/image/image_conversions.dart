@@ -45,12 +45,21 @@ class ImageConversion {
     return image;
   }
 
-  static void convertImageToTensorBuffer(Image image, TensorBuffer buffer) {
+  static void convertImageToTensorBuffer(Image image, TensorBuffer buffer,
+      {int axis_num = 3}) {
     int w = image.width;
     int h = image.height;
     List<int> intValues = image.data;
 
-    List<int> shape = [h, w, 3];
+    List<int> shape;
+    if (axis_num == 3) {
+      shape = [h, w, 3];
+    } else if (axis_num == 4) {
+      shape = [1, h, w, 3];
+    } else {
+      throw ("axis_num should be 3 or 4 so the shape of TensorBuffer can be [h, w, 3] or [1, h, w, 3], while the input axis_num is $axis_num");
+    }
+
     List<int> rgbValues = List.filled(h * w * 3, 0);
     for (int i = 0, j = 0; i < intValues.length; i++) {
       rgbValues[j++] = ((intValues[i]) & 0xFF);
@@ -61,6 +70,7 @@ class ImageConversion {
     buffer.loadList(rgbValues, shape: shape);
   }
 
+  /*
   static void convertImageToTensorBuffer2(Image image, TensorBuffer buffer) {
     int w = image.width;
     int h = image.height;
@@ -75,5 +85,5 @@ class ImageConversion {
     }
 
     buffer.loadList(rgbValues, shape: shape);
-  }
+  }*/
 }
